@@ -1,7 +1,4 @@
-from collections import deque
+import sys
 
-lst = [1, 4, 5, 3]
-queue = deque(lst)
-print(queue)
-queue.pop()
-print(queue)
+W, H = map(int, sys.stdin.readline().split())
+print(W*H*0.5)
