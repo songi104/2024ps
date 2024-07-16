@@ -29,11 +29,11 @@ def dfs(graph, i, j, cnt):
         elif (graph[ny][nx] == '1'):
             #print(f'{ny},{nx}로 이동합니다')
             
-            cnt = dfs(graph, ny, nx, cnt)
             if ((ny == N-1) and (nx == M-1)):
                 result.append(cnt)
                 print(f'{cnt} 추가합니다')
                 return cnt
+            cnt = dfs(graph, ny, nx, cnt)
             
             
     return cnt
