@@ -61,8 +61,8 @@ while True:
     
     #print(f'현재 target은 {target}')
     while target >= len(numbers):
-        target = target - (len(numbers)-1)
         if target <= 0: target+= K
+        target = target - (len(numbers)-1)
     #print(f'target을 {target}으로 변경했어요')
     #print(f'------------------한바퀴 끝 result: {result}')
     numbers = new_numbers
