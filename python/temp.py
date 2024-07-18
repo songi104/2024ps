@@ -1,4 +1,8 @@
 import sys
 
-H, I, A, R, C = map(int, sys.stdin.readline().split())
-print(H*I - A*R*C)
+M = int(sys.stdin.readline())
+D = int(sys.stdin.readline())
+
+if M==2 and D ==18: print("Special")
+elif M <= 1 or (M==2 and D < 18) : print("Before")
+elif M >= 3 or (M==2 and D > 18) : print("After")

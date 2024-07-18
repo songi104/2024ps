@@ -26,7 +26,9 @@ while cnt < k:
             delete number[i]
             cnt += 1
             if cnt == k: break
+=> 이것도 불가하다! 예를들어 417712 를 생각해보면 41을 다 빼야하는데 1만 빠진다.
 
+max를 이용해보자. max 앞부분의 개수가 k-cnt보다 작으면 다 날려도 된다.
 
 # 더 공부할 것
 number = "1924" 일 때 나는 [1,9,2,4]를 원한다면 만드는 방법은?
@@ -36,5 +38,12 @@ number = list(map(int, list(number)))
 
 list의 pop 시간복잡도는?
 
+find 정리하기
+
+
 # 실수
 number라는 문자열에서 k개의 수를 제거하는 것이다. 그냥 그것을 list로 만들어서 하면 안 된다..
+
+number.pop을 하면 number의 list 개수가 달라져서 곤란하게 된다. 이걸 해결할 방법은 무엇일까?
+1. 새로운 리스트를 만든다
+2. try-catch 사용한다
