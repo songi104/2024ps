@@ -1,8 +1,10 @@
 import sys
 
-M = int(sys.stdin.readline())
-D = int(sys.stdin.readline())
+T = int(input())
 
-if M==2 and D ==18: print("Special")
-elif M <= 1 or (M==2 and D < 18) : print("Before")
-elif M >= 3 or (M==2 and D > 18) : print("After")
+for _ in range(T):
+    N, C = map(int, sys.stdin.readline().split())
+    result = int(N/C)
+    if (N % C != 0):
+        result += 1
+    print(result)
