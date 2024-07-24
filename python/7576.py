@@ -16,37 +16,80 @@ N줄 (1: 익토 0: 안익토 -1:토마토x)
 
 """
 
-# 1. 입력 처리
+
 import sys
+sys.stdin = open("python/input.txt", "r")
+
+
+
+
+# 1. 입력 처리
 M, N = map(int, sys.stdin.readline().split())
-graph = [ []*(M) for _ in range(N) ]
+graph = []
+next_graph = []
 visited = [[False]*(M) for _ in range(N)]
 
 for i in range(N):
-    graph[i] = list(map(int, sys.stdin.readline().split())) 
+    line = list(map(int, sys.stdin.readline().split())) 
+    graph.append(line[:])
+    next_graph.append(line[:])
 
-print(graph)
+#print(graph)
+#print(next_graph)
+
 
 
 # 2. bfs를 돌려서 토마토 익게 만들기. for day in range(MN)
 # 이 때 bfs를 더 이상 돌릴 수 없다면 -1 출력
 # -> 하지만 그게 전부 익을만큼 익어서 그런 걸 수도
-next_graph = [[]*(M) for _ in range(N)]
+
 result = 0
+ds = [(1,0), (-1,0), (0,1), (0,-1)]
+lst_y = {i for i in range(N)}
+lst_x = {i for i in range(M)}
+
+import copy
+
 while True:
+    #print(result)
+    #for i in range(len(graph)):
+        #print(graph[i])
     no_bfs = True
-    for y in range(N):
-        for x in range(M):
-            if graph[y][x] == 1: 
-                bfs(y, x)
-                no_bfs = False
+    new_lst_y = set()
+    new_lst_x = set()
+    for y in lst_y:
+        for x in lst_x:
+            #print(f'{y} {x} 입니다')
+            for dy, dx in ds:
+                ny = y + dy
+                nx = x + dx
+                if (0<=ny<N and 0<=nx<M) and graph[y][x] == 1 and graph[ny][nx]==0:
+                    next_graph[ny][nx] = 1
+                    #print(f"{y} {x} 가 {ny} {nx}에 영향줬습니다")
+                    #print(f"graph     : {graph[y]}")
+                    #print(f"next_graph: {next_graph[y]}")
+                    new_lst_y.add(ny)
+                    new_lst_x.add(nx)
+                    #print(new_lst_y, new_lst_x)
+                    no_bfs = False
+    
+    
     # 그래프 처리
-    graph = next_graph
+    graph = copy.deepcopy(next_graph)
+    lst_y = set(new_lst_y)
+    lst_x = set(new_lst_x)
     result += 1
 
-    if no_bfs: 
-        result = -1
+    if no_bfs:
+        cant = False
+        for line in graph:
+            cant = line.count(0)
+            if cant : # 다 못 익음 
+                result = -1
+                break
+        if not cant: result -= 1
         break
 
 
 # 결과 출력
+print(result)

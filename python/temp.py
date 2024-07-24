@@ -1,40 +1,26 @@
 import sys
 
-"""
-N: 총 노래 곡 수
-L: 모든 노래의 길이는 L초이다
-노래와 노래 사이에는 5초 동안 아무 노래도 들리지않는 구간이 있다.
-첫 곡을 듣는 순간 0초이다. 그때부터 전화벨이 울리기 시작한다. 
-전화벨은 D초에 한 번, 한 번 울릴 때 1초동안 울린다.
-전화벨을 들을 수 있는 가장 빠른 시간 구하기.
-- 모든 앨범 수록곡을 다 들었을 때
-- 노래와 노래 사이 5초의 시간
-
-입력:
-N L D
-
-출력: 제일 빠른 시간
-
-2 6 7에 대해서 생각해보자.
-먼저 노래 입장.
-노래는 2곡이다.
-6초 후에 노래 1곡이 끝난다.
-6-11 동안 무음상황이다.
-11-17 동안 노래 한다.
-17부터는 무음 상황이다. 끝나는 시간은 L*N + 5*(N-1) 이다.
-
-전화에 대해 생각해보자.
-0-1 초 때 울린다.
-1+7(8)-9 초 때 울린다.
-9+7(16)-17 동안 울린다.
-즉 전화는 0, 8, 16 때마다 울리는데 이건 D+1이다.
-
-구현하는 제일 쉬운 방법은 아마 time이란 것을 주고 그걸 돌리면서 하는 것일 것이다. 
-그러나 너무 길어질 수도 있다. => 시간 복잡도 계산
-일단 이렇게 해보자.
-
-"""
-
 input = sys.stdin.readline
-N, L, D = map(int, input().split())
+number = input().rstrip()
 
+def solution(number):
+    cute = True
+
+    if len(number) == 1:
+        return "◝(⑅•ᴗ•⑅)◜..°♡ 뀌요미!!"
+
+    step = int(number[1]) - int(number[0])
+    for i in range(1, len(number)):
+        new_step = int(number[i]) - int(number[i-1])
+        #print(step, new_step)
+        if new_step != step:
+            cute = False
+            break
+
+    if (cute): 
+        return "◝(⑅•ᴗ•⑅)◜..°♡ 뀌요미!!"
+    else:
+        return "흥칫뿡!! <(￣ ﹌ ￣)>"
+
+#print((number))
+print(solution(number))
