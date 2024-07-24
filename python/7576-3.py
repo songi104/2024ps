@@ -1,17 +1,20 @@
-# 백준 7576번 토마토 구현 2
+# 백준 7576번 토마토 구현 3
+# Index ERROR ㅜㅜ
 
 from collections import deque
 import sys
 sys.stdin = open('python/input.txt', 'r')
 input = sys.stdin.readline
 
+MAX = 1000 + 3
 # 입력 처리
 M, N = map(int, input().split())
-graph = [[0]*M for _ in range(N)]
-visited = [[False]*M for _ in range(N)]
+graph = [[-1]*(N+2) for _ in range(M+2)]
 for i in range(N):
-    graph[i] = list(map(int, input().split()))
-# print(graph)
+    graph[i+1][1:M+1] = list(map(int, input().split()))
+
+for i in range(len(graph)):
+    print(graph[i])
 
 
 def bfs(queue):
@@ -21,15 +24,15 @@ def bfs(queue):
         for dy, dx in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
             ny = y + dy
             nx = x + dx
-            if (0 <= ny < N and 0 <= nx < M) and graph[ny][nx] == 0 and not visited[ny][nx]:
-                visited[ny][nx] == True
+            if graph[ny][nx] == 0:
+                # visited[ny][nx] == True
                 graph[ny][nx] = now + 1
                 queue.append((ny, nx))
 
 
 queue = deque([])
-for y in range(N):
-    for x in range(M):
+for y in range(N+2):
+    for x in range(M+2):
         if graph[y][x] == 1:
             queue.append((y, x))
 bfs(queue)
@@ -38,12 +41,12 @@ bfs(queue)
 result = 0
 max_value = 0
 for i in range(N):
-    # print(graph[i])
     if 0 in graph[i]:
         result = -1
         break
     max_value = max(max_value, max(graph[i]))
 if result != -1:
     result = max_value - 1
+
 
 print(result)
