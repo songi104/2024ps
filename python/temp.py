@@ -1,26 +1,9 @@
 import sys
 
-input = sys.stdin.readline
-number = input().rstrip()
-
-def solution(number):
-    cute = True
-
-    if len(number) == 1:
-        return "◝(⑅•ᴗ•⑅)◜..°♡ 뀌요미!!"
-
-    step = int(number[1]) - int(number[0])
-    for i in range(1, len(number)):
-        new_step = int(number[i]) - int(number[i-1])
-        #print(step, new_step)
-        if new_step != step:
-            cute = False
-            break
-
-    if (cute): 
-        return "◝(⑅•ᴗ•⑅)◜..°♡ 뀌요미!!"
-    else:
-        return "흥칫뿡!! <(￣ ﹌ ￣)>"
-
-#print((number))
-print(solution(number))
+lst = [0, 1, 2, 3, 4]
+result = []
+for i in range(2, len(lst)):
+    for j in range(1, i):
+        for k in range(j):
+            result.append((i, j, k))
+print(result, len(result))
