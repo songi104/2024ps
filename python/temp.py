@@ -1,9 +1,16 @@
 import sys
 
-lst = [0, 1, 2, 3, 4]
-result = []
-for i in range(2, len(lst)):
-    for j in range(1, i):
-        for k in range(j):
-            result.append((i, j, k))
-print(result, len(result))
+input = sys.stdin.readline
+N, M = map(int, input().split())
+arr = list(map(int, input().split()))
+result = 0
+stress = 0
+
+for e in arr:
+    stress += e
+    if e < 0:
+        stress = 0
+    if stress >= M:
+        result += 1
+
+print(result)

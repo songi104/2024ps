@@ -31,3 +31,27 @@ BFS를 이용해 바이러스를 퍼트린다.
 # 생각해볼 것
 시간복잡도
 공간복잡도 계산해보기
+
+```python
+for _ in range(N):
+    graph.append(input().rstrip().split())
+```
+list에 str로 넣는게 나을까 int로 넣는게 나을까
+
+```python
+walls = []
+for y in range(N):
+    for x in range(M):
+        if graph[y][x] == '0':
+            walls.append((y,x))
+```
+튜플이 더 작을까?
+
+
+# 발표
+> 이 바이러스는 상하좌우로 인접한 빈 칸으로 모두 퍼져나갈 수 있다.
+BFS를 이용하면 되지 않을까? 라고 생각.
+새로 세우는 벽은 3개.
+0은 빈칸, 1은 벽, 2는 바이러스.
+벽 3개 세우고, 안전영역을 계산.
+안전영역의 최댓값을 찾는다.
