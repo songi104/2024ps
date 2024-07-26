@@ -1,16 +1,13 @@
 import sys
 
 input = sys.stdin.readline
-N, M = map(int, input().split())
-arr = list(map(int, input().split()))
-result = 0
-stress = 0
+N = int(input())
+lines = []
+for _ in range(N):
+    lines.append(list(map(int, input().split())))
+# print(lines)
+lines.sort(key=lambda x: x[1])
 
-for e in arr:
-    stress += e
-    if e < 0:
-        stress = 0
-    if stress >= M:
-        result += 1
-
-print(result)
+lines.sort(key=lambda x: x[0])
+for x, y in lines:
+    print(x, y)
