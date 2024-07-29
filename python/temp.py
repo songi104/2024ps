@@ -2,10 +2,12 @@ import sys
 
 input = sys.stdin.readline
 
-numbers = []
-for _ in range(9):
-    numbers.append(int(input()))
+T = int(input())
 
-result = max(numbers)
-print(result)
-print(numbers.index(result)+1)
+for _ in range(T):
+    R, S = input().split()
+    R = int(R)
+    result = ""
+    for s in S:
+        result += s*R
+    print(result)
