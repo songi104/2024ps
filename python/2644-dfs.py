@@ -1,3 +1,5 @@
+# 백준 2644번 촌수계산
+
 from collections import deque
 import sys
 
@@ -24,27 +26,16 @@ for _ in range(M):
 result = [0]*(N+1)
 visited = [False]*(N+1)
 
-
-def bfs(start, end, graph, visited, result):
-    q = deque([start])
-    visited[start] = True
-    cnt = 0
-
-    while q:
-        now = q.popleft()
-        if now in graph.keys():
-            around = graph[now]
-        else:
-            continue
-        for next in around:
-            if visited[next]:
-                continue
-            result[next] = result[now]+1
-            visited[next] = True
-            q.append(next)
+# 재귀방식으로
 
 
-bfs(a, b, graph, visited, result)
+def dfs(stack, graph, visited, result, end):
+    while stack:
+        if graph[stack[0]]:
+
+
+stack = [a]
+dfs(stack, graph, visited, result, b)
 
 if result[b] == 0:
     print(-1)
