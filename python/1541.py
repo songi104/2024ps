@@ -13,6 +13,26 @@ import sys
 
 sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
-A, B = map(int, input().split())
-M = (B-A)/400
-print(1/(1+10**M))
+line = input().rstrip()
+N = len(line)
+#print(f'origin: {line}')
+
+res = 0
+chunk = 0
+num = ''
+for i in range(N-1, -1, -1):
+    s = line[i]
+    if s == '+':
+        chunk += int(num)
+        num = ''
+    elif s=='-':
+        chunk += int(num)
+        res -= chunk
+        chunk =0
+        num =''
+    else:
+        num  = s + num
+if chunk != 0:
+    res += chunk
+res += int(num)
+print(res)
