@@ -1,13 +1,15 @@
 import sys
 
 input = sys.stdin.readline
-A, B, C = map(int, input().split())
-N = int(input())
-result = 0
-for _ in range(N):
-    value = 0
-    for i in range(3):
-        a, b, c = map(int, input().split())
-        value += a*A + b*B + c*C
-    result = max(value, result)
-print(result)
+
+i = 1
+while True:
+    line = input().rstrip()
+    if line == '0':
+        break
+    r, w, l = map(int, line.split())
+    if (2*r)**2 >= (w**2 + l**2):
+        print(f'Pizza {i} fits on the table.')
+    else:
+        print(f'Pizza {i} does not fit on the table.')
+    i += 1
