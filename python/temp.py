@@ -2,10 +2,9 @@ import sys
 
 input = sys.stdin.readline
 
-seconds = 0
-for _ in range(4):
-    seconds += int(input())
-x = seconds // 60
-y = seconds % 60
+A = int(input())
+B = int(input())
+C = int(input())
 
-print(x, y, sep='\n')
+print(A+B-C)
+print(int(str(A)+str(B))-C)
