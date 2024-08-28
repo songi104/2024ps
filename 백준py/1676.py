@@ -3,7 +3,7 @@ import sys
 input = sys.stdin.readline
 N = int(input())
 
-dp = [0]*(N+1)
+dp = [0]*(501)
 dp[0] = 1
 dp[1] = 1
 
@@ -24,5 +24,4 @@ for i in range(len(number)-1, -1, -1):
         res += 1
     else:
         break
-
 print(res)
