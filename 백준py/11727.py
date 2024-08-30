@@ -34,10 +34,17 @@ n <= 1007
 
 import sys
 n = int(sys.stdin.readline())
-if n % 2 == 0:
-    # 짝수
-    res = 3**(n/2)
-else:
-    res = 3**((n-1)/2)*((n-1)/2+1)
+dp = [0]*1001
+dp[0] = 1
+dp[1] = 1
 
-print(int(res % 10007))
+
+def solve(n):
+    if dp[n] != 0:
+        return dp[n]
+    dp[n] = 2*solve(n-2) + solve(n-1)
+    return dp[n]
+
+
+res = solve(n)
+print(res % 10007)
