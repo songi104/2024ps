@@ -10,6 +10,7 @@ N (세로) <= 100000
 사자배치 경우의 수 % 9901
 
 
+
 """
 import sys
 sys.stdin = open('input.txt', 'r')
