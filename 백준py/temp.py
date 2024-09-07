@@ -3,13 +3,17 @@ import sys
 sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
 
-lst = list(map(int, input().split()))
-ascending = sorted(lst)
-des = sorted(lst, reverse=True)
+T = int(input())
 
-if lst == ascending:
-    print('ascending')
-elif lst == des:
-    print('descending')
-else:
-    print('mixed')
+for _ in range(T):
+    H, W, N = map(int, input().split())
+    floor = N % H
+    house = N // H + 1
+    if floor == 0:
+        floor = H
+        house -= 1  # 이 경우에는 호수 계산에서 1을 빼야 함
+    if house < 10:
+        house = '0' + str(house)
+    else:
+        house = str(house)
+    print(str(floor) + house)
