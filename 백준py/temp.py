@@ -1,8 +1,5 @@
 
 from string import ascii_lowercase
-
-S = input().rstrip()
-abcs = ascii_lowercase
-lst = []
-for a in abcs:
-    print(S.find(a), end=' ')
+lst = [1, 2, 3, 4]
+lst += [6]
+print(lst)

@@ -24,28 +24,49 @@ input = sys.stdin.readline
 N, M = map(int, input().split())
 graph = []
 chickens = []
+homes = []
 for i in range(N):
-    line = list(map(int, input().split()))
-    graph.append(line)
-    chickens.append((i, line.count(2)))
+    graph.append(list(map(int, input().split())))
 
-print(graph, chickens)
+for i in range(N):
+    for j in range(N):
+        if graph[i][j] == 1:
+            homes.append((i, j))
+        elif graph[i][j] == 2:
+            chickens.append((i, j))
+
+# print(homes)
+# print(graph, chickens)
 
 
 def cal(tlst):
-    pass
+    # 모든 home에 대해서
+    # tlst의 모든 store에 대해서 거리 구한다음에
+    # min을 결과에 더한다.
+    res = 0
+    for home in homes:
+        # print('home', home)
+        td = 2*N
+        for store in tlst:
+            dist = abs(home[0]-store[0])+abs(home[1]-store[1])
+            td = min(dist, td)
+        res += td
+
+    return res
 
 
 def dfs(n, tlst):
     global distances
-
-    if n == len(chickens) - 1 or len(tlst) == M:
-        distances.append(cal(tlst))
+    # print(n, tlst)
+    if n == len(chickens) or len(tlst) == M:
+        distances.append((cal(tlst)))
         return
 
     # 선택
+    dfs(n+1, tlst+[chickens[n]])
 
     # 안 선택
+    dfs(n+1, tlst)
 
 
 distances = []
