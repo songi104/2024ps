@@ -1,4 +1,6 @@
 # 백준 1916번 최소비용 구하기
+# 옛날에 bfs로 푼 듯?
+
 from collections import deque
 import sys
 sys.stdin = open('input.txt', 'r')
