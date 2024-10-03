@@ -1,34 +1,43 @@
 # 백준 1520번 내리막길
 """
-확통 경우의수랑
-graph 뽑고 bfs랑 합치면 될 듯
-
-
+dfs 돌려서 하면 되지않나?
+백트래킹 쓰면될 것 같음.
 """
 
-from collections import deque
 import sys
+sys.setrecursionlimit(10**6)
 sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
 
-M, N = map(int, input().split())
+N, M = map(int, input().split())
 graph = []
-for _ in range(M):
+for _ in range(N):
     graph.append(list(map(int, input().split())))
-print(graph)
+dp = [[-1]*M for _ in range(N)]
 
-dp = [[-1]*N for _ in range(M)]
-dp[0][0] = 1
-
-# dfs
+d = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
 
-def dfs(y, x):
-    if dp[y][x] != -1:
-        return dp[y][x]
-    for dy, dx in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-        ny = y
+def dfs(i, j):
+    global graph
+    global d
+
+    if i == N-1 and j == M-1:
+        return 1
+
+    if dp[i][j] != -1:
+        return dp[i][j]
+
+    dp[i][j] = 0
+
+    for dy, dx in d:
+        ny = i+dy
+        nx = j+dx
+        # print(ny, nx)
+        if 0 <= ny < N and 0 <= nx < M and (graph[ny][nx] < graph[i][j]):
+            dp[i][j] += dfs(ny, nx)
+
+    return dp[i][j]
 
 
-dfs(0, 0)
-print(dp[M-1][N-1])
+print(dfs(0, 0))

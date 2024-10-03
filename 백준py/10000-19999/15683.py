@@ -4,6 +4,14 @@ cvs: cctvs 좌표
 rot: 회전 방향
 tlst: cctvs 회전방향을 담음
 
+
+1. 모든 cctv들을 저장한다.
+2. cctv들을 하나씩 돌려가면서
+
+
+?? 백트래킹을 써야하는 이유
+
+
 """
 import sys
 
