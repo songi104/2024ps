@@ -19,8 +19,8 @@ print(items)
 dp = [0]*(K+1)
 
 for w, v in items:
-    for weight in range(K, w-1, -1):
-        dp[weight] = max(dp[weight], dp[weight-w]+v)
+    for value in range(K, v-1, -1):
+        dp[value] = min(dp[value], dp[value-v]+w)
 
 
 print(dp[K])
