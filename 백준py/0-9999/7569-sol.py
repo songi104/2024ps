@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 input = sys.stdin.readline
-h, n, m = map(int, input().split())
+m, n, h = map(int, input().split())
 
 graph = [[list(map(int, input().split())) for _ in range(n)] for _ in range(h)]
 visited = [[[False]*m for _ in range(n)] for _ in range(h)]
@@ -25,7 +25,7 @@ def bfs():
             ny = y + dy[i]
             nz = z + dz[i]
 
-            if 0 <= nz < h and 0 <= ny < n and 0 <= nx < m and not visited[nz][ny][nx] and graph[ny][ny][nx] == 0:
+            if 0 <= nz < h and 0 <= ny < n and 0 <= nx < m and not visited[nz][ny][nx] and graph[nz][ny][nx] == 0:
                 q.append((nz, ny, nx))
                 graph[nz][ny][nx] = graph[z][y][x] + 1
                 visited[nz][ny][nx] = True
@@ -37,7 +37,7 @@ for z in range(h):
             if graph[z][y][x] == 1 and not visited[z][y][x]:
                 visited[z][y][x] = True
                 q.append((z, y, x))
-print('==')
+
 bfs()
 for box in graph:
     for line in box:
