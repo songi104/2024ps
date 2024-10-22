@@ -6,7 +6,7 @@ input = sys.stdin.readline
 def check(word):
     # 1. aeiou 중 하나를 반드시 포함
     if 'a' not in word and 'e' not in word and 'i' not in word and 'o' not in word and 'u' not in word:
-        return False
+        return [False, 1]
 
     # 2. 모음이 3개 혹은 자음이 3개 연속 오면 안 됨
     # 모음 - 0 자음 1로 표현
@@ -31,7 +31,7 @@ def check(word):
             now = 0 if word[i] in 'aeiou' else 1
             # 3개 비교
             if p == pp and p == now:
-                return False
+                return [False, 2]
 
             pp = p
             p = now
@@ -39,14 +39,15 @@ def check(word):
 
         # 3. 같은 글자 연속 두번 안 됨 (단, ee, oo 제외)
         if len(word) == 1:
-            return True
+            return [True, 0]
 
         p = word[0]
-        for n in word:
+        for n in word[1:]:
             if n == p and (n != 'e' and n != 'o'):
-                return False
+                return [False, 3]
             p = n
-        return True
+
+    return [True, 0]
 
 
 while True:
@@ -55,7 +56,7 @@ while True:
         break
 
     # check 알고리즘
-    flag = check(word)
+    flag, tp = check(word)
 
     # 결과 출력
     if flag:
