@@ -3,9 +3,13 @@
 using namespace std;
 
 int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
-    int sum, k;
-    int prev = 100;
+
+    int sum = 0, k, prev = 100;
+
     for (int i=0; i<7; i++) {
         cin >> k;
         if ( k % 2 == 1 ) {
@@ -18,7 +22,5 @@ int main() {
     if (sum != 0) {
         cout << sum << '\n' << prev;
     }
-    else {
-        cout << -1;
-    }
+    else cout << -1;
 }
