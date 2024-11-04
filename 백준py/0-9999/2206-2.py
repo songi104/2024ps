@@ -15,7 +15,7 @@ vis = [[[0]*2 for _ in range(M)] for _ in range(N)]
 # bfs
 from collections import deque
 q = deque([(0,0,0)])
-vis[0][0][0] = 1
+vis[0][0][0] = 1  
 dy = [1,0,-1,0]
 dx = [0,1,0,-1]
 
