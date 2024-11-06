@@ -138,7 +138,7 @@ def dfs(num, ry, rx, by, bx, graph):
             continue
 
         if graph[nby][nbx] == "O":
-            continue
+            return 11
         if graph[nry][nrx] == "O":
             return num
 
