@@ -6,6 +6,9 @@
 이번이 1인데 next가 1이면 return False
 false 받으면 계속 return false
 
+
+edge case:
+1. 만일 그래프가 끊어져있다면? 모든 것에 대해서 돌려야함.
 """
 
 
@@ -16,14 +19,28 @@ input = sys.stdin.readline
 K = int(input())
 
 def dfs(num):
-    now = visited[num]
-    if num in graph:
-        next_nodes = graph[num]
-        for n_node in next_nodes:
-            if visited[n_node] == 0: # 방문 안함
-                visited[n_node] = 1 if now == -1 else -1
-            elif visited[n_node] == now:
-                return False
+    stack = [num]
+    visited[num] = 1
+
+    while stack:
+        # 1. 시작 노드 방문 처리 및 스택에 넣기
+        # 2. 탑노드의 주변에 대해서
+        #     - 방문하지않았으면 방문처리후 스택에 넣기
+        #     - 모두 방문했다면 stack에서 빼기
+        top = stack[-1]
+        all_vis = True
+        if top in graph:
+            for n_node in graph[top]:
+                if visited[n_node] == 0:
+                    visited[n_node] = 1 if visited[top] == -1 else -1
+                    stack.append(n_node)
+                    all_vis = False
+                elif visited[n_node] == visited[top]:
+                    return False
+        if all_vis:
+            stack.pop()
+    return True
+
 
 
 
@@ -45,10 +62,16 @@ for _ in range(K):
             graph[b] = [a]
 
     visited = [0]*(V+1)
-    res = dfs(1)
+    for i in range(1, V+1):
+        if visited[i] == 0:
+            res = dfs(i)
+        if not res:
+            break
+
     if res:
         print("YES")
     else:
         print("NO")
 
-    print(graph)
+    # print(visited)
+    # print(graph)
