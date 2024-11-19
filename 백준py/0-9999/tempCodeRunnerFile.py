@@ -32,7 +32,7 @@ def dfs(tlst, t_vis):
 
     if t_vis[now]:
         return [],[]
-    t_vis[now] = 1
+    t_vis[now] = True
 
     if not t_vis[nxt]:
         return dfs(tlst+[nxt], t_vis)
