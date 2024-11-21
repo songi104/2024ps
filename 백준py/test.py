@@ -3,3 +3,5 @@ times = []
 for _ in range(N):
     times.append(int(input()))
 
+
+
